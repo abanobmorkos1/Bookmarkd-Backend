@@ -18,53 +18,16 @@ mongoose.connection
 .on('error', (error) => console.log(error))
 //
 /// book Models
-const bookSchema = mongoose.Schema({
+const bookSchema = new mongoose.Schema({
     name: String,
     url: String
 })
 const book = mongoose.model('book', bookSchema)
-// IDUCS
-app.get("/book",async(req,res)=>{
-    try {
-        const response = await book.find({})
-        res.json(response)
-    } catch (error) {
-        res.status(400).json(error)
-    }
-});
-app.post("/book",async(req,res)=>{
-    try {
-        const book = await book.create(req.body)
-        res.json(book)
-    } catch (error) {
-        res.status(400).json(error)
-    }
-});
-app.get("/book/:id", async(req,res)=>{
-    try {
-        const book = await book.findById(req.params.id)
-        res.json(book)
-    } catch (error) {
-        res.status(400).json(error)
-    }
-});
-app.put("/book/:id", async(req,res)=>{
-    try {
-        const book = await book.findByIdAndUpdate(req.params.id, req.body, {new:true})
-        res.json(book)
-    } catch (error) {
-        res.status(400).json(error)
-    }
-});
-app.delete("/book/:id", async(req,res)=>{
-    try {
-        const book = await book.findByIdAndDelete(req.params.id)
-        res.status(204).json(book)
-    } catch (error) {
-        res.status(400).json(error)
-    }
-});
-// test route
+
+app.get("/book", (req, res) => {
+    res.send("hello world")
+})
+
 app.get('/',(req,res)=>{
     res.json({Name:"test route "})
 })
