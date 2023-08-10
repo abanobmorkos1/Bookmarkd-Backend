@@ -1,18 +1,14 @@
-//work please manmm
-
+//work please man121
+//another change
+//testing
 require("dotenv").config()
 const {PORT, DATABASE_URL} = process.env
-
 const express = require("express")
-
-
 const app = express()
 const mongoose = require('mongoose')
-
 const cors = require('cors')
 const morgan = require("morgan")
 
-///
 
 // MongoDB Conection
 mongoose.connect(DATABASE_URL, {
@@ -40,7 +36,7 @@ app.use(express.json())
 app.get("/book", async (req, res) => {
     try {
         res.json(await Book.find({}))
-      
+
     } catch (error) {
         res.status(400).json(error)
     }
@@ -64,7 +60,7 @@ app.get("/book/:id", async (req,res) => {
 app.put("/book/:id", async (req, res) => {
     try {
         res.json(await Book.findByIdAndUpdate(req.params.id))
-        
+
     } catch (error) {
         res.status(400).json(error)
     }
