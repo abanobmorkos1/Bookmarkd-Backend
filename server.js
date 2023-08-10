@@ -1,6 +1,4 @@
-//work please man121
-
-// yoo
+//work please manmm
 require("dotenv").config()
 const {PORT, DATABASE_URL} = process.env
 const express = require("express")
