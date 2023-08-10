@@ -1,6 +1,6 @@
 require("dotenv").config()
-const morgan = require("morgan")
 const express = require("express")
+const morgan = require("morgan")
 const mongoose = require('mongoose')
 const cors = require('cors')
 const app = express()
@@ -18,17 +18,22 @@ mongoose.connection
 .on('error', (error) => console.log(error))
 //
 /// book Models
-const bookSchema = new mongoose.Schema({
+const bookSchema = mongoose.Schema({
     name: String,
     url: String
 })
-const book = mongoose.model('book', bookSchema)
+const Books = mongoose.model('book', bookSchema)
 
 app.get("/book", (req, res) => {
     res.send("hello world")
 })
 
-app.get('/',(req,res)=>{
-    res.json({Name:"test route "})
+app.post("/book", async (req, res) => {
+    try{
+        const book = await Books.create(req.body)
+        res.json(book)
+    } catch (error) {
+        res.status(404).json(error)
+    }
 })
 app.listen(PORT, () => console.log(`listening on port ${PORT}`))
