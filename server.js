@@ -58,7 +58,7 @@ app.get("/book/:id", async (req,res) => {
 });
 app.put("/book/:id", async (req, res) => {
     try {
-        res.json(await Book.findByIdAndUpdate(req.params.id))
+        res.json(await Book.findByIdAndUpdate(req.params.id , req.body,{new:true}))
 
     } catch (error) {
         res.status(400).json(error)
